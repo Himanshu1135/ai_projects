@@ -50,14 +50,18 @@ class ML:
     @csrf_exempt
     def sms_spam_classifier(request):
         if request.method == "POST":
-            # -------------------------- Data input
-            text = request.POST['input']
-            # data = request.body.decode('utf-8')
-            # data = json.loads(data)
-            # text = data.get('sms')
-            #---------------------------- predication   
-            results = sms_spam_predict(text,SpamModel,Vectorizer)
-            ml_response = {"result": results}
+            try:
+                # -------------------------- Data input
+                text = request.POST['input']
+                # data = request.body.decode('utf-8')
+                # data = json.loads(data)
+                # text = data.get('sms')
+                #---------------------------- predication   
+                results = sms_spam_predict(text,SpamModel,Vectorizer)
+                ml_response = {"result": results}
+            except:
+                ml_response = {"result": 'Found some Error'}
+
             return render(request,'sms.html',ml_response)
 
             
