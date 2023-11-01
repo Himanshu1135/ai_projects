@@ -66,7 +66,6 @@ class ML:
 
             
         #     return JsonResponse(ml_response,safe=False)
-        
 
         return render(request,'sms.html')
 
